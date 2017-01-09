@@ -16,13 +16,16 @@ body{
 }
 
 h1{
-  color: #396;
+  color: #000;
   font-weight: 100;
   font-size: 40px;
-  margin: 40px 0px 20px;
+  margin: 0px 0px 20px;
 }
 
 #clockdiv{
+    margin-top: 5%;
+    border-radius: 25px;
+    padding: 0 30px 30px 30px;
 	font-family: sans-serif;
 	color: #fff;
 	display: inline-block;
@@ -49,9 +52,16 @@ h1{
 	padding-top: 5px;
 	font-size: 16px;
 }
+#photo {
+    display: block;
+    height: 150px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
 </style>
 <body>
 <div id="clockdiv">
+    <img id="photo" src="mcgee.png"/>
     <h1>Game over in...</h1>
   <div>
     <span class="days"></span>
@@ -110,9 +120,27 @@ function initializeClock(id, endtime) {
   updateClock();
   var timeinterval = setInterval(updateClock, 1000);
 }
-
 var deadline = new Date(Date.parse(new Date('June 24, 2017 12:00:00 GMT')));
 initializeClock('clockdiv', deadline);
+
+window.addEventListener('load', function() {
+
+    function getRandomId() {
+        return Math.floor(Math.random() * (10 - 0) + 0);
+    }
+
+    function changePhoto() {
+        document.getElementById('photo').src = "bg"+getRandomId()+".gif";
+    }
+
+    function resetPhoto() {
+        document.getElementById('photo').src = "mcgee.png";
+    }
+
+    document.getElementById('photo').addEventListener('mouseover', changePhoto);
+    document.getElementById('photo').addEventListener('mouseout', resetPhoto);
+    
+});
 </script>
 </body>
 </html>
